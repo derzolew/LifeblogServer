@@ -6,4 +6,5 @@
     <include file="data/changelog/0.1/user/db.add-user-oauth.xml"/>
     <include file="data/changelog/0.1/user/db.add-user.xml"/>
     <include file="data/changelog/0.1/user/db.fill-client-details-table.xml"/>
+    <include file="data/changelog/0.1/profile/db.add-profile.xml"/>
 </databaseChangeLog>

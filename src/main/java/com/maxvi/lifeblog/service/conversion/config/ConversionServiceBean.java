@@ -1,5 +1,6 @@
 package com.maxvi.lifeblog.service.conversion.config;
 
+import com.maxvi.lifeblog.service.conversion.ProfileEntityToDtoConverter;
 import com.maxvi.lifeblog.service.conversion.UserEntityToCurrentUserDtoConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ public class ConversionServiceBean
         ConversionServiceFactoryBean conversionServiceFactoryBean = new ConversionServiceFactoryBean();
         Set<Converter> converters = new HashSet<>();
         converters.add(new UserEntityToCurrentUserDtoConverter());
+        converters.add(new ProfileEntityToDtoConverter());
         conversionServiceFactoryBean.setConverters(converters);
         return conversionServiceFactoryBean;
     }

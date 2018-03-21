@@ -1,5 +1,7 @@
 package com.maxvi.lifeblog.model.user;
 
+import com.maxvi.lifeblog.model.profile.ProfileEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,6 +14,7 @@ public class UserEntity implements Serializable
     private String password;
     private String role;
     private boolean activated;
+    private ProfileEntity profile;
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -68,5 +71,17 @@ public class UserEntity implements Serializable
     public void setActivated(boolean activated)
     {
         this.activated = activated;
+    }
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY, optional = false)
+    public ProfileEntity getProfile()
+    {
+        return profile;
+    }
+
+    public void setProfile(ProfileEntity profile)
+    {
+        this.profile = profile;
     }
 }
