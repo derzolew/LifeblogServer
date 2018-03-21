@@ -1,0 +1,35 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-table-user" author="vilcheuski">
+        <createTable tableName="user" schemaName="public">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="login" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activated" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-superadmin-user" author="vilcheuski">
+        <insert tableName="user" schemaName="public">
+            <column name="login">admin@lifeblog.com</column>
+            <column name="password">$2a$10$wqa6CnMqDA47QtBYLe.T0uuDZH/bvcejgvAHdojzPTp0uHOPKlH1q</column>
+            <column name="role">ADMIN</column>
+            <column name="activated">true</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
