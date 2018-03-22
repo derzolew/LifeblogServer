@@ -48,7 +48,7 @@ public class ProfileServiceImpl implements ProfileService
         if (profile == null)
         {
             profile = new ProfileEntity();
-            profile.setUser(userRepository.findById(userId).get());
+            profile.setUser(userRepository.findById(userId).orElse(null));
         }
         profile.setBirthday(newProfileDto.getBirthday());
         profile.setDescription(newProfileDto.getDescription());

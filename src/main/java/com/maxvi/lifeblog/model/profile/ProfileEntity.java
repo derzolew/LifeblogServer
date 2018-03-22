@@ -1,10 +1,12 @@
 package com.maxvi.lifeblog.model.profile;
 
+import com.maxvi.lifeblog.model.BlogPostEntity;
 import com.maxvi.lifeblog.model.user.UserEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "profile", schema = "public")
@@ -17,6 +19,7 @@ public class ProfileEntity implements Serializable
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private List<BlogPostEntity> blogPostEntities;
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -97,5 +100,16 @@ public class ProfileEntity implements Serializable
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
+    }
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    public List<BlogPostEntity> getBlogPostEntities()
+    {
+        return blogPostEntities;
+    }
+
+    public void setBlogPostEntities(List<BlogPostEntity> blogPostEntities)
+    {
+        this.blogPostEntities = blogPostEntities;
     }
 }
