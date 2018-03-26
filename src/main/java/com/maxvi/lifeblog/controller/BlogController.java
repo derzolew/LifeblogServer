@@ -1,6 +1,8 @@
 package com.maxvi.lifeblog.controller;
 
 import com.maxvi.lifeblog.service.blog.BlogService;
+import com.maxvi.lifeblog.service.blog.dto.PostDto;
+import com.maxvi.lifeblog.service.dto.PageDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +16,16 @@ public class BlogController
     private BlogService blogService;
 
     @GetMapping("/all/{profileId}")
-    public ResponseEntity getPostsByProfileId(@PathVariable("profileId") Long profileId,
-                                              @RequestParam("page") Integer pageIndex,
-                                              @RequestParam("size") Integer size)
+    public ResponseEntity<PageDto<PostDto>> getPostsByProfileId(@PathVariable("profileId") Long profileId,
+                                                                @RequestParam("page") Integer pageIndex,
+                                                                @RequestParam("size") Integer size)
     {
         return ResponseEntity.ok(blogService.getBlogPostsByProfileId(profileId, pageIndex, size));
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable("postId") Long postId)
+    {
+        return ResponseEntity.ok(blogService.getPostById(postId));
     }
 }

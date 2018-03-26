@@ -5,6 +5,7 @@ import com.maxvi.lifeblog.model.profile.ProfileEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "blog_post", schema = "public")
@@ -14,6 +15,8 @@ public class BlogPostEntity implements Serializable
     private String post;
     private Date date;
     private ProfileEntity profile;
+    private List<PostLikeEntity> likes;
+    private List<CommentEntity> comments;
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
@@ -61,5 +64,27 @@ public class BlogPostEntity implements Serializable
     public void setProfile(ProfileEntity profile)
     {
         this.profile = profile;
+    }
+
+    @OneToMany(mappedBy = "blogPostEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<PostLikeEntity> getLikes()
+    {
+        return likes;
+    }
+
+    public void setLikes(List<PostLikeEntity> likes)
+    {
+        this.likes = likes;
+    }
+
+    @OneToMany(mappedBy = "blogPostEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    public List<CommentEntity> getComments()
+    {
+        return comments;
+    }
+
+    public void setComments(List<CommentEntity> comments)
+    {
+        this.comments = comments;
     }
 }

@@ -6,4 +6,5 @@ import com.maxvi.lifeblog.service.blog.dto.PostDto;
 public interface BlogService
 {
     PageDto<PostDto> getBlogPostsByProfileId(Long profileId, Integer pageIndex, Integer size);
+    PostDto getPostById(Long postId);
 }

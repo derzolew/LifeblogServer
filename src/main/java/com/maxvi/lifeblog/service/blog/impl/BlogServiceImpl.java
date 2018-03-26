@@ -28,6 +28,13 @@ public class BlogServiceImpl implements BlogService
         return new PageDto<>(postDtoList, blogPostEntities.getTotalElements(), blogPostEntities.getTotalPages());
     }
 
+    @Override
+    public PostDto getPostById(Long postId)
+    {
+        BlogPostEntity blogPostEntity = blogRepository.getOne(postId);
+        return postEntityToDto(blogPostEntity);
+    }
+
     private PostDto postEntityToDto(BlogPostEntity blogPostEntity)
     {
         PostDto postDto = new PostDto();
