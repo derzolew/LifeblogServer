@@ -102,7 +102,7 @@ public class ProfileEntity implements Serializable
         this.phoneNumber = phoneNumber;
     }
 
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<BlogPostEntity> getBlogPostEntities()
     {
         return blogPostEntities;
