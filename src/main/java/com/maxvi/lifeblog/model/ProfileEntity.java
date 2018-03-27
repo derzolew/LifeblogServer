@@ -1,7 +1,4 @@
-package com.maxvi.lifeblog.model.profile;
-
-import com.maxvi.lifeblog.model.BlogPostEntity;
-import com.maxvi.lifeblog.model.user.UserEntity;
+package com.maxvi.lifeblog.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

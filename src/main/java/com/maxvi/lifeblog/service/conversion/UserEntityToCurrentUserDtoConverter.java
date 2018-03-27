@@ -1,6 +1,6 @@
 package com.maxvi.lifeblog.service.conversion;
 
-import com.maxvi.lifeblog.model.user.UserEntity;
+import com.maxvi.lifeblog.model.UserEntity;
 import com.maxvi.lifeblog.service.dto.CurrentUserDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;

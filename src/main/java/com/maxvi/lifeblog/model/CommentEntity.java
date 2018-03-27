@@ -1,7 +1,5 @@
 package com.maxvi.lifeblog.model;
 
-import com.maxvi.lifeblog.model.profile.ProfileEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;

@@ -1,9 +1,9 @@
 package com.maxvi.lifeblog.service.security.impl;
 
-import com.maxvi.lifeblog.model.user.UserEntity;
+import com.maxvi.lifeblog.model.UserEntity;
 import com.maxvi.lifeblog.repository.UserRepository;
 import com.maxvi.lifeblog.service.security.SecurityService;
-import com.maxvi.lifeblog.service.user.CustomUserDetails;
+import com.maxvi.lifeblog.service.user.impl.CustomUserDetails;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;

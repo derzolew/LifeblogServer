@@ -1,4 +1,4 @@
-package com.maxvi.lifeblog.model.user;
+package com.maxvi.lifeblog.model;
 
 public enum UserRole
 {

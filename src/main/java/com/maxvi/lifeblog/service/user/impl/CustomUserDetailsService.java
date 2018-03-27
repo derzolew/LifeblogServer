@@ -1,6 +1,6 @@
-package com.maxvi.lifeblog.service.user;
+package com.maxvi.lifeblog.service.user.impl;
 
-import com.maxvi.lifeblog.model.user.UserEntity;
+import com.maxvi.lifeblog.model.UserEntity;
 import com.maxvi.lifeblog.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

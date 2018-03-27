@@ -1,10 +1,9 @@
 package com.maxvi.lifeblog.service.user.impl;
 
-import com.maxvi.lifeblog.model.profile.ProfileEntity;
-import com.maxvi.lifeblog.model.user.UserEntity;
+import com.maxvi.lifeblog.model.ProfileEntity;
+import com.maxvi.lifeblog.model.UserEntity;
 import com.maxvi.lifeblog.repository.ProfileRepository;
 import com.maxvi.lifeblog.repository.UserRepository;
-import com.maxvi.lifeblog.service.dto.CurrentUserDto;
 import com.maxvi.lifeblog.service.dto.ProfileDto;
 import com.maxvi.lifeblog.service.security.SecurityService;
 import com.maxvi.lifeblog.service.user.ProfileService;

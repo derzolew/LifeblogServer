@@ -1,6 +1,6 @@
 package com.maxvi.lifeblog.service.security;
 
-import com.maxvi.lifeblog.model.user.UserEntity;
+import com.maxvi.lifeblog.model.UserEntity;
 
 public interface SecurityService
 {

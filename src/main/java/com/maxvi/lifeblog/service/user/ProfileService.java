@@ -1,6 +1,6 @@
 package com.maxvi.lifeblog.service.user;
 
-import com.maxvi.lifeblog.model.profile.ProfileEntity;
+import com.maxvi.lifeblog.model.ProfileEntity;
 import com.maxvi.lifeblog.service.dto.ProfileDto;
 
 public interface ProfileService

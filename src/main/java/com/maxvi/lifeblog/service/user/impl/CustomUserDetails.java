@@ -1,6 +1,6 @@
-package com.maxvi.lifeblog.service.user;
+package com.maxvi.lifeblog.service.user.impl;
 
-import com.maxvi.lifeblog.model.user.UserEntity;
+import com.maxvi.lifeblog.model.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

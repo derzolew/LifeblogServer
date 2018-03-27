@@ -1,7 +1,7 @@
 package com.maxvi.lifeblog.service.user.impl;
 
-import com.maxvi.lifeblog.model.user.UserEntity;
-import com.maxvi.lifeblog.model.user.UserRole;
+import com.maxvi.lifeblog.model.UserEntity;
+import com.maxvi.lifeblog.model.UserRole;
 import com.maxvi.lifeblog.service.dto.CurrentUserDto;
 import com.maxvi.lifeblog.service.security.SecurityService;
 import com.maxvi.lifeblog.service.user.UserService;
