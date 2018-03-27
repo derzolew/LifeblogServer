@@ -11,7 +11,7 @@
             <column name="post" type="text"/>
             <column name="date" type="timestamp"/>
             <column name="profile_id" type="bigint">
-                <constraints unique="true"
+                <constraints unique="false"
                              foreignKeyName="blog-post-to-user"
                              referencedTableName="profile"
                              referencedColumnNames="id"

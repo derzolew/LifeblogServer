@@ -4,22 +4,11 @@ import com.maxvi.lifeblog.service.dto.ProfileDto;
 
 import java.util.Date;
 
-public class PostDto
+public class PostLikeDto
 {
     private Long id;
-    private String post;
-    private Date date;
     private ProfileDto profileDto;
-
-    public ProfileDto getProfileDto()
-    {
-        return profileDto;
-    }
-
-    public void setProfileDto(ProfileDto profileDto)
-    {
-        this.profileDto = profileDto;
-    }
+    private Date date;
 
     public Long getId()
     {
@@ -31,14 +20,14 @@ public class PostDto
         this.id = id;
     }
 
-    public String getPost()
+    public ProfileDto getProfileDto()
     {
-        return post;
+        return profileDto;
     }
 
-    public void setPost(String post)
+    public void setProfileDto(ProfileDto profileDto)
     {
-        this.post = post;
+        this.profileDto = profileDto;
     }
 
     public Date getDate()

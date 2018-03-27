@@ -6,6 +6,7 @@ import com.maxvi.lifeblog.repository.ProfileRepository;
 import com.maxvi.lifeblog.repository.UserRepository;
 import com.maxvi.lifeblog.service.dto.CurrentUserDto;
 import com.maxvi.lifeblog.service.dto.ProfileDto;
+import com.maxvi.lifeblog.service.security.SecurityService;
 import com.maxvi.lifeblog.service.user.ProfileService;
 import com.maxvi.lifeblog.service.user.UserService;
 import org.springframework.core.convert.ConversionService;
@@ -28,6 +29,9 @@ public class ProfileServiceImpl implements ProfileService
 
     @Resource(name = "conversionService")
     private ConversionService conversionService;
+
+    @Resource(name = "securityService")
+    private SecurityService securityService;
 
     @Override
     public ProfileDto getProfileById(Long userId)
@@ -57,5 +61,12 @@ public class ProfileServiceImpl implements ProfileService
         profile.setPhoneNumber(newProfileDto.getPhoneNumber());
         profile = profileRepository.save(profile);
         return conversionService.convert(profile, ProfileDto.class);
+    }
+
+    @Override
+    public ProfileEntity getCurrentUserProfile()
+    {
+        UserEntity userEntity = securityService.getCurrentUserEntity();
+        return profileRepository.findOneByUserId(userEntity.getId());
     }
 }

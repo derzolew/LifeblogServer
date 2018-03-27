@@ -77,7 +77,7 @@ public class BlogPostEntity implements Serializable
         this.likes = likes;
     }
 
-    @OneToMany(mappedBy = "blogPostEntity", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "blogPostEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<CommentEntity> getComments()
     {
         return comments;
