@@ -11,13 +11,6 @@ public class ProfileEntityToDtoConverter implements Converter<ProfileEntity, Pro
     @Override
     public ProfileDto convert(ProfileEntity profileEntity)
     {
-        ProfileDto profileDto = new ProfileDto();
-        profileDto.setId(profileEntity.getId());
-        profileDto.setBirthday(profileEntity.getBirthday());
-        profileDto.setDescription(profileEntity.getDescription());
-        profileDto.setFirstName(profileEntity.getFirstName());
-        profileDto.setLastName(profileEntity.getLastName());
-        profileDto.setPhoneNumber(profileEntity.getPhoneNumber());
-        return profileDto;
+       return null;
     }
 }

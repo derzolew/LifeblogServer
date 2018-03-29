@@ -10,7 +10,7 @@ import java.util.List;
 public class CommentEntity implements Serializable
 {
     private Long id;
-    private BlogPostEntity blogPostEntity;
+    private BlogPostEntity postEntity;
     private Date date;
     private String comment;
     private ProfileEntity profileEntity;
@@ -29,16 +29,16 @@ public class CommentEntity implements Serializable
         this.id = id;
     }
 
-    @ManyToOne(targetEntity = BlogPostEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = BlogPostEntity.class)
     @JoinColumn(name = "post_id")
     public BlogPostEntity getBlogPostEntity()
     {
-        return blogPostEntity;
+        return postEntity;
     }
 
     public void setBlogPostEntity(BlogPostEntity blogPostEntity)
     {
-        this.blogPostEntity = blogPostEntity;
+        this.postEntity = blogPostEntity;
     }
 
     @Column(name = "date")

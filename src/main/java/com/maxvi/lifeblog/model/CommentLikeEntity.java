@@ -26,7 +26,7 @@ public class CommentLikeEntity implements Serializable
         this.id = id;
     }
 
-    @ManyToOne(targetEntity = CommentEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = CommentEntity.class)
     @JoinColumn(name = "comment_id")
     public CommentEntity getCommentEntity()
     {
@@ -50,7 +50,7 @@ public class CommentLikeEntity implements Serializable
         this.date = date;
     }
 
-    @OneToOne(targetEntity = ProfileEntity.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = ProfileEntity.class)
     @JoinColumn(name = "profile_id")
     public ProfileEntity getProfileEntity()
     {

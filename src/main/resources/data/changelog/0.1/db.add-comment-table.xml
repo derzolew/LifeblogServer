@@ -9,7 +9,7 @@
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
             <column name="post_id" type="bigint">
-                <constraints unique="true"
+                <constraints unique="false"
                              foreignKeyName="comment-to-post"
                              referencedTableName="blog_post"
                              referencedColumnNames="id"

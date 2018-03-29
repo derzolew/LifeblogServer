@@ -4,6 +4,7 @@ import com.maxvi.lifeblog.model.ProfileEntity;
 import com.maxvi.lifeblog.model.UserEntity;
 import com.maxvi.lifeblog.repository.ProfileRepository;
 import com.maxvi.lifeblog.repository.UserRepository;
+import com.maxvi.lifeblog.service.conversion.Converters;
 import com.maxvi.lifeblog.service.dto.ProfileDto;
 import com.maxvi.lifeblog.service.security.SecurityService;
 import com.maxvi.lifeblog.service.user.ProfileService;
@@ -26,19 +27,16 @@ public class ProfileServiceImpl implements ProfileService
     @Resource(name = "userRepository")
     private UserRepository userRepository;
 
-    @Resource(name = "conversionService")
-    private ConversionService conversionService;
-
     @Resource(name = "securityService")
     private SecurityService securityService;
 
     @Override
     public ProfileDto getProfileById(Long userId)
     {
-        ProfileEntity profileEntity = profileRepository.findOneByUserId(userId);
+        ProfileEntity profileEntity = profileRepository.findByUser_Id(userId);
         if (profileEntity != null)
         {
-            return conversionService.convert(profileEntity, ProfileDto.class);
+            return Converters.profileEntityToDtoConverter(profileEntity);
         }
         return null;
     }
@@ -47,7 +45,7 @@ public class ProfileServiceImpl implements ProfileService
     @Transactional
     public ProfileDto updateProfileById(Long userId, ProfileDto newProfileDto)
     {
-        ProfileEntity profile = profileRepository.findOneByUserId(userId);
+        ProfileEntity profile = profileRepository.findByUser_Id(userId);
         if (profile == null)
         {
             profile = new ProfileEntity();
@@ -59,13 +57,13 @@ public class ProfileServiceImpl implements ProfileService
         profile.setLastName(newProfileDto.getLastName());
         profile.setPhoneNumber(newProfileDto.getPhoneNumber());
         profile = profileRepository.save(profile);
-        return conversionService.convert(profile, ProfileDto.class);
+        return Converters.profileEntityToDtoConverter(profile);
     }
 
     @Override
     public ProfileEntity getCurrentUserProfile()
     {
         UserEntity userEntity = securityService.getCurrentUserEntity();
-        return profileRepository.findOneByUserId(userEntity.getId());
+        return profileRepository.findByUser_Id(userEntity.getId());
     }
 }

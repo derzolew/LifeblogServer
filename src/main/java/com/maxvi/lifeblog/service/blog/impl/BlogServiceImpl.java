@@ -8,6 +8,7 @@ import com.maxvi.lifeblog.service.blog.BlogService;
 import com.maxvi.lifeblog.service.blog.dto.PostDto;
 import com.maxvi.lifeblog.service.blog.dto.PostLikeDto;
 import com.maxvi.lifeblog.service.blog.exception.BlogPostNotFoundException;
+import com.maxvi.lifeblog.service.conversion.Converters;
 import com.maxvi.lifeblog.service.dto.PageDto;
 import com.maxvi.lifeblog.service.dto.ProfileDto;
 import com.maxvi.lifeblog.service.user.ProfileService;
@@ -157,7 +158,7 @@ public class BlogServiceImpl implements BlogService
         postDto.setId(blogPostEntity.getId());
         postDto.setPost(blogPostEntity.getPost());
 
-        ProfileDto profileDto = conversionService.convert(blogPostEntity.getProfile(), ProfileDto.class);
+        ProfileDto profileDto = Converters.profileEntityToDtoConverter(blogPostEntity.getProfile());
         postDto.setProfileDto(profileDto);
         return postDto;
     }
