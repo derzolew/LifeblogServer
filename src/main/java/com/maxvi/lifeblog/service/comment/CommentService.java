@@ -12,4 +12,5 @@ public interface CommentService
     CommentLikeDto likeComment(Long postId, Long commentId);
     CommentDto deleteComment(Long postId, Long commentId);
     CommentDto updateComment(Long postId, Long commentId, MakeCommentDto makeCommentDto);
+    boolean canProcessComment(Long commentId);
 }

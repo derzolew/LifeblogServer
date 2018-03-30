@@ -76,7 +76,7 @@ public class CommentEntity implements Serializable
         this.profileEntity = profileEntity;
     }
 
-    @OneToMany(mappedBy = "commentEntity", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commentEntity", cascade = CascadeType.ALL)
     public List<CommentLikeEntity> getCommentLikeEntities()
     {
         return commentLikeEntities;

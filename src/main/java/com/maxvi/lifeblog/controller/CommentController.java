@@ -62,14 +62,26 @@ public class CommentController
     public ResponseEntity<CommentDto> deleteComment(@PathVariable("postId") Long postId,
                                                     @PathVariable("commentId") Long commentId)
     {
-        return null;
+        boolean canDeleteComment = commentService.canProcessComment(commentId);
+        if (canDeleteComment)
+        {
+            CommentDto commentDto = commentService.deleteComment(postId, commentId);
+            return ResponseEntity.ok(commentDto);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @PatchMapping("/{postId}/comment/{commentId}")
     public ResponseEntity<CommentDto> editComment(@PathVariable("postId") Long postId,
                                                   @PathVariable("commentId") Long commentId,
-                                                  @RequestBody @Valid MakeCommentDto commentDto)
+                                                  @RequestBody @Valid MakeCommentDto makeCommentDto)
     {
-        return null;
+        boolean canEditComment = commentService.canProcessComment(commentId);
+        if (canEditComment)
+        {
+            CommentDto commentDto = commentService.updateComment(postId, commentId, makeCommentDto);
+            return ResponseEntity.ok(commentDto);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 }

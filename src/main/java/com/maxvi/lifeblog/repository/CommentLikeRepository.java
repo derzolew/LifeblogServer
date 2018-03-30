@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface CommentLikeRepository extends JpaRepository<CommentLikeEntity, Long>
 {
     CommentLikeEntity findByProfileEntity_Id(Long profileId);
+    CommentLikeEntity findByProfileEntity_IdAndCommentEntity_Id(Long profileId, Long commentId);
 }

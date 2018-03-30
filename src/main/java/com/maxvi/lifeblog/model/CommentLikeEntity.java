@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "comment-like", schema = "public")
+@Table(name = "comment_like", schema = "public")
 public class CommentLikeEntity implements Serializable
 {
     private Long id;

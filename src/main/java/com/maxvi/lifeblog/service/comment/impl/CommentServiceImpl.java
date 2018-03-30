@@ -3,6 +3,7 @@ package com.maxvi.lifeblog.service.comment.impl;
 import com.maxvi.lifeblog.model.BlogPostEntity;
 import com.maxvi.lifeblog.model.CommentEntity;
 import com.maxvi.lifeblog.model.CommentLikeEntity;
+import com.maxvi.lifeblog.model.UserRole;
 import com.maxvi.lifeblog.repository.BlogRepository;
 import com.maxvi.lifeblog.repository.CommentLikeRepository;
 import com.maxvi.lifeblog.repository.CommentRepository;
@@ -13,6 +14,7 @@ import com.maxvi.lifeblog.service.comment.dto.MakeCommentDto;
 import com.maxvi.lifeblog.service.conversion.Converters;
 import com.maxvi.lifeblog.service.dto.PageDto;
 import com.maxvi.lifeblog.service.user.ProfileService;
+import com.maxvi.lifeblog.service.user.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,9 @@ public class CommentServiceImpl implements CommentService
 
     @Resource(name = "blogRepository")
     private BlogRepository blogRepository;
+
+    @Resource(name = "userService")
+    private UserService userService;
 
     @Override
     public PageDto<CommentDto> getCommentsByBlogPostId(Long postId, Integer pageIndex, Integer pageSize)
@@ -80,13 +85,15 @@ public class CommentServiceImpl implements CommentService
         CommentEntity commentEntity = commentRepository.findById(commentId).orElse(null);
         if (commentEntity != null)
         {
-            CommentLikeEntity commentLikeEntity = commentLikeRepository.findByProfileEntity_Id(profileService.getCurrentUserProfile().getId());
+            CommentLikeEntity commentLikeEntity = commentLikeRepository
+                    .findByProfileEntity_IdAndCommentEntity_Id(profileService.getCurrentUserProfile().getId(), commentId);
             if (commentLikeEntity == null)
             {
                 commentLikeEntity = new CommentLikeEntity();
                 commentLikeEntity.setCommentEntity(commentEntity);
                 commentLikeEntity.setDate(new Date());
                 commentLikeEntity.setProfileEntity(profileService.getCurrentUserProfile());
+                commentLikeEntity = commentLikeRepository.save(commentLikeEntity);
                 return Converters.convertCommentLikeEntityToDto(commentLikeEntity);
             }
             else
@@ -102,6 +109,13 @@ public class CommentServiceImpl implements CommentService
     @Transactional
     public CommentDto deleteComment(Long postId, Long commentId)
     {
+        CommentEntity commentEntity = commentRepository.findById(commentId).orElse(null);
+        if (commentEntity != null)
+        {
+            CommentDto commentDto = Converters.convertCommentEntityToDto(commentEntity);
+            commentRepository.delete(commentEntity);
+            return commentDto;
+        }
         return null;
     }
 
@@ -109,6 +123,23 @@ public class CommentServiceImpl implements CommentService
     @Transactional
     public CommentDto updateComment(Long postId, Long commentId, MakeCommentDto makeCommentDto)
     {
+        CommentEntity commentEntity = commentRepository.findById(commentId).orElse(null);
+        if (commentEntity != null)
+        {
+            commentEntity.setComment(makeCommentDto.getComment());
+            commentEntity.setDate(new Date());
+            commentEntity = commentRepository.save(commentEntity);
+            return Converters.convertCommentEntityToDto(commentEntity);
+        }
         return null;
+    }
+
+    @Override
+    public boolean canProcessComment(Long commentId)
+    {
+        CommentEntity commentEntity = commentRepository.findById(commentId).orElse(null);
+        return commentEntity != null
+                && (commentEntity.getProfileEntity().getId().equals(userService.getCurrentUser().getId())
+                || userService.getCurrentUser().getRole().equals(UserRole.ADMIN.name()));
     }
 }
