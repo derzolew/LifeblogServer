@@ -5,11 +5,10 @@ import com.maxvi.lifeblog.model.UserEntity;
 import com.maxvi.lifeblog.repository.ProfileRepository;
 import com.maxvi.lifeblog.repository.UserRepository;
 import com.maxvi.lifeblog.service.conversion.Converters;
-import com.maxvi.lifeblog.service.dto.ProfileDto;
+import com.maxvi.lifeblog.service.user.dto.ProfileDto;
 import com.maxvi.lifeblog.service.security.SecurityService;
 import com.maxvi.lifeblog.service.user.ProfileService;
 import com.maxvi.lifeblog.service.user.UserService;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

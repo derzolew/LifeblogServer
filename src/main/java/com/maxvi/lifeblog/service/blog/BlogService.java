@@ -1,7 +1,7 @@
 package com.maxvi.lifeblog.service.blog;
 
 import com.maxvi.lifeblog.service.blog.dto.PostLikeDto;
-import com.maxvi.lifeblog.service.blog.exception.BlogPostNotFoundException;
+import com.maxvi.lifeblog.service.exception.BlogPostNotFoundException;
 import com.maxvi.lifeblog.service.dto.PageDto;
 import com.maxvi.lifeblog.service.blog.dto.PostDto;
 

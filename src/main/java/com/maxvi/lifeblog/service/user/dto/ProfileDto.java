@@ -1,4 +1,4 @@
-package com.maxvi.lifeblog.service.dto;
+package com.maxvi.lifeblog.service.user.dto;
 
 import java.util.Date;
 

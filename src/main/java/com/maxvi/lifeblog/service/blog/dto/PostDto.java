@@ -1,6 +1,6 @@
 package com.maxvi.lifeblog.service.blog.dto;
 
-import com.maxvi.lifeblog.service.dto.ProfileDto;
+import com.maxvi.lifeblog.service.user.dto.ProfileDto;
 
 import java.util.Date;
 

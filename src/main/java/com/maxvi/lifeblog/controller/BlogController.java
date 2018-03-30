@@ -3,7 +3,7 @@ package com.maxvi.lifeblog.controller;
 import com.maxvi.lifeblog.service.blog.BlogService;
 import com.maxvi.lifeblog.service.blog.dto.PostDto;
 import com.maxvi.lifeblog.service.blog.dto.PostLikeDto;
-import com.maxvi.lifeblog.service.blog.exception.BlogPostNotFoundException;
+import com.maxvi.lifeblog.service.exception.BlogPostNotFoundException;
 import com.maxvi.lifeblog.service.dto.PageDto;
 import com.maxvi.lifeblog.service.user.UserService;
 import org.springframework.http.HttpStatus;

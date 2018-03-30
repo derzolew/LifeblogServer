@@ -1,6 +1,6 @@
 package com.maxvi.lifeblog.controller;
 
-import com.maxvi.lifeblog.service.dto.ProfileDto;
+import com.maxvi.lifeblog.service.user.dto.ProfileDto;
 import com.maxvi.lifeblog.service.user.ProfileService;
 import com.maxvi.lifeblog.service.user.UserService;
 import org.springframework.http.HttpStatus;

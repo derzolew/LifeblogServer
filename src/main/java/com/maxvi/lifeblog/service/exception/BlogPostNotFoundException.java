@@ -1,4 +1,4 @@
-package com.maxvi.lifeblog.service.blog.exception;
+package com.maxvi.lifeblog.service.exception;
 
 public class BlogPostNotFoundException extends Exception
 {

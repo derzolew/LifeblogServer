@@ -5,7 +5,7 @@ import com.maxvi.lifeblog.model.CommentLikeEntity;
 import com.maxvi.lifeblog.model.ProfileEntity;
 import com.maxvi.lifeblog.service.comment.dto.CommentDto;
 import com.maxvi.lifeblog.service.comment.dto.CommentLikeDto;
-import com.maxvi.lifeblog.service.dto.ProfileDto;
+import com.maxvi.lifeblog.service.user.dto.ProfileDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

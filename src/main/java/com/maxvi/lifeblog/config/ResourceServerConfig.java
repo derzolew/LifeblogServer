@@ -37,6 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                     .antMatchers("/swagger-ui.html").permitAll()
                     .antMatchers("/swagger-resources/configuration/ui").permitAll()
                     .antMatchers("/swagger-resources/configuration/security").permitAll()
+                    .antMatchers("/user/signup").permitAll()
                     .anyRequest().hasAnyRole("ADMIN", "USER");
         }
         catch (Exception e)
