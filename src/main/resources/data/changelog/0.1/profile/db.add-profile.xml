@@ -13,6 +13,9 @@
             <column name="last_name" type="varchar"/>
             <column name="description" type="varchar"/>
             <column name="birthday" type="timestamp"/>
+            <column name="fk_photo_id" type="bigint">
+                <constraints nullable="true" foreignKeyName="profile-to-image" referencedTableName="image" referencedColumnNames="id"/>
+            </column>
             <column name="user_id" type="bigint">
                 <constraints unique="true"
                              foreignKeyName="profile-to-user"

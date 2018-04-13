@@ -16,6 +16,7 @@ public class ProfileEntity implements Serializable
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private ImageEntity photo;
     private List<BlogPostEntity> blogPostEntities;
 
     @Id
@@ -108,5 +109,17 @@ public class ProfileEntity implements Serializable
     public void setBlogPostEntities(List<BlogPostEntity> blogPostEntities)
     {
         this.blogPostEntities = blogPostEntities;
+    }
+
+    @ManyToOne(targetEntity = ImageEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_photo_id")
+    public ImageEntity getPhoto()
+    {
+        return photo;
+    }
+
+    public void setPhoto(ImageEntity photo)
+    {
+        this.photo = photo;
     }
 }

@@ -2,10 +2,13 @@ package com.maxvi.lifeblog.service.conversion;
 
 import com.maxvi.lifeblog.model.CommentEntity;
 import com.maxvi.lifeblog.model.CommentLikeEntity;
+import com.maxvi.lifeblog.model.ImageEntity;
 import com.maxvi.lifeblog.model.ProfileEntity;
 import com.maxvi.lifeblog.service.comment.dto.CommentDto;
 import com.maxvi.lifeblog.service.comment.dto.CommentLikeDto;
+import com.maxvi.lifeblog.service.image.dto.ImageDto;
 import com.maxvi.lifeblog.service.user.dto.ProfileDto;
+import com.maxvi.lifeblog.service.util.UrlGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +52,16 @@ public class Converters
         profileDto.setFirstName(profileEntity.getFirstName());
         profileDto.setLastName(profileEntity.getLastName());
         profileDto.setPhoneNumber(profileEntity.getPhoneNumber());
+        profileDto.setPhotoName(profileEntity.getPhoto().getPublicFileName());
+        profileDto.setPhotoUrl(UrlGenerator.getUrlForImage(profileEntity.getPhoto()));
         return profileDto;
+    }
+
+    public static ImageDto imageEntityToDtoConverter(ImageEntity imageEntity)
+    {
+        ImageDto imageDto = new ImageDto();
+        imageDto.setUrl(UrlGenerator.getUrlForImage(imageEntity));
+        imageDto.setFileName(imageEntity.getPublicFileName());
+        return imageDto;
     }
 }

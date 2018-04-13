@@ -7,6 +7,8 @@ public class ProfileDto
     private Long id;
     private Date birthday;
     private String description;
+    private String photoName;
+    private String photoUrl;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -69,5 +71,25 @@ public class ProfileDto
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhotoName()
+    {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName)
+    {
+        this.photoName = photoName;
+    }
+
+    public String getPhotoUrl()
+    {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl)
+    {
+        this.photoUrl = photoUrl;
     }
 }
