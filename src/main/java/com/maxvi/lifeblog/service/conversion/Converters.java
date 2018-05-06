@@ -52,8 +52,11 @@ public class Converters
         profileDto.setFirstName(profileEntity.getFirstName());
         profileDto.setLastName(profileEntity.getLastName());
         profileDto.setPhoneNumber(profileEntity.getPhoneNumber());
-        profileDto.setPhotoName(profileEntity.getPhoto().getPublicFileName());
-        profileDto.setPhotoUrl(UrlGenerator.getUrlForImage(profileEntity.getPhoto()));
+        if (profileEntity.getPhoto() != null)
+        {
+            profileDto.setPhotoName(profileEntity.getPhoto().getPublicFileName());
+            profileDto.setPhotoUrl(UrlGenerator.getUrlForImage(profileEntity.getPhoto()));
+        }
         return profileDto;
     }
 

@@ -19,11 +19,6 @@ public class UploadController
     private UploadService uploadService;
 
     @GetMapping(value = "/image/{imageName:.+}", produces = "image/jpeg")
-    @ApiOperation(
-            value = "Получение уменьшеного изображения по его имени",
-            notes = "Получение уменьшеного изображения по его имени. <br/> Для вызова данного метода необходим OAuth-токен.",
-            authorizations = @Authorization(value = "bearer")
-    )
     @ApiResponses({
             @ApiResponse(code = 200, message = "Уменьшенное зображение", response = org.springframework.core.io.Resource.class)
     })
@@ -34,11 +29,6 @@ public class UploadController
     }
 
     @GetMapping(value = "/image/original/{imageName:.+}", produces = "image/jpeg")
-    @ApiOperation(
-            value = "Получение оригинального изображения по его имени",
-            notes = "Получение оригинального изображения по его имени. <br/> Для вызова данного метода необходим OAuth-токен.",
-            authorizations = @Authorization(value = "bearer")
-    )
     @ApiResponses({
             @ApiResponse(code = 200, message = "Оригинальное изображение", response = org.springframework.core.io.Resource.class)
     })
@@ -49,11 +39,6 @@ public class UploadController
     }
 
     @PostMapping(value = "/image", produces = "application/json")
-    @ApiOperation(
-            value = "Загрузка изображения",
-            notes = "Загрузка изображения. <br/> Для вызова данного метода необходим OAuth-токен.",
-            authorizations = @Authorization(value = "bearer")
-    )
     @ApiResponses({
             @ApiResponse(code = 200, message = "Информация изображения", response = ImageDto.class),
             @ApiResponse(code = 422, message = "Неверный размер изображения", response = ImageDto.class)
