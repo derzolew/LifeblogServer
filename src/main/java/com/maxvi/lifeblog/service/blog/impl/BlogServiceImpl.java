@@ -1,8 +1,10 @@
 package com.maxvi.lifeblog.service.blog.impl;
 
 import com.maxvi.lifeblog.model.BlogPostEntity;
+import com.maxvi.lifeblog.model.ImageEntity;
 import com.maxvi.lifeblog.model.PostLikeEntity;
 import com.maxvi.lifeblog.repository.BlogRepository;
+import com.maxvi.lifeblog.repository.ImageRepository;
 import com.maxvi.lifeblog.repository.PostLikeRepository;
 import com.maxvi.lifeblog.service.blog.BlogService;
 import com.maxvi.lifeblog.service.blog.dto.PostDto;
@@ -12,6 +14,7 @@ import com.maxvi.lifeblog.service.conversion.Converters;
 import com.maxvi.lifeblog.service.dto.PageDto;
 import com.maxvi.lifeblog.service.user.dto.ProfileDto;
 import com.maxvi.lifeblog.service.user.ProfileService;
+import com.maxvi.lifeblog.service.util.UrlGenerator;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +43,9 @@ public class BlogServiceImpl implements BlogService
 
     @Resource(name = "postLikeRepository")
     private PostLikeRepository postLikeRepository;
+
+    @Resource(name = "imageRepository")
+    private ImageRepository imageRepository;
 
     @Override
     public PageDto<PostDto> getBlogPostsByProfileId(Long profileId, Integer pageIndex, Integer size)
@@ -141,6 +147,12 @@ public class BlogServiceImpl implements BlogService
         blogPostEntity.setDate(postDto.getDate());
         blogPostEntity.setComments(new ArrayList<>());
         blogPostEntity.setLikes(new ArrayList<>());
+        blogPostEntity.setTitle(postDto.getTitle());
+        if (postDto.getPhotoName() != null)
+        {
+            ImageEntity imageEntity = imageRepository.findImageEntityByPublicFileName(postDto.getPhotoName());
+            blogPostEntity.setPhoto(imageEntity);
+        }
         blogPostEntity.setProfile(profileService.getCurrentUserProfile());
         return blogPostEntity;
     }
@@ -157,7 +169,12 @@ public class BlogServiceImpl implements BlogService
         postDto.setDate(blogPostEntity.getDate());
         postDto.setId(blogPostEntity.getId());
         postDto.setPost(blogPostEntity.getPost());
-
+        postDto.setTitle(blogPostEntity.getTitle());
+        if (blogPostEntity.getPhoto() != null)
+        {
+            postDto.setPhotoName(blogPostEntity.getPhoto().getPublicFileName());
+            postDto.setPhotoUrl(UrlGenerator.getUrlForImage(blogPostEntity.getPhoto()));
+        }
         ProfileDto profileDto = Converters.profileEntityToDtoConverter(blogPostEntity.getProfile());
         postDto.setProfileDto(profileDto);
         return postDto;

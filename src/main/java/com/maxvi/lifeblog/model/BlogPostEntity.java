@@ -13,6 +13,8 @@ public class BlogPostEntity implements Serializable
     private String post;
     private Date date;
     private ProfileEntity profile;
+    private String title;
+    private ImageEntity photo;
     private List<PostLikeEntity> likes;
     private List<CommentEntity> comments;
 
@@ -62,6 +64,27 @@ public class BlogPostEntity implements Serializable
     public void setProfile(ProfileEntity profile)
     {
         this.profile = profile;
+    }
+
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @ManyToOne(targetEntity = ImageEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_photo_id")
+    public ImageEntity getPhoto()
+    {
+        return photo;
+    }
+
+    public void setPhoto(ImageEntity photo)
+    {
+        this.photo = photo;
     }
 
     @OneToMany(mappedBy = "blogPostEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

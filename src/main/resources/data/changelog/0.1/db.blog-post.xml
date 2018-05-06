@@ -10,12 +10,16 @@
             </column>
             <column name="post" type="text"/>
             <column name="date" type="timestamp"/>
+            <column name="title" type="varchar"/>
             <column name="profile_id" type="bigint">
                 <constraints unique="false"
                              foreignKeyName="blog-post-to-user"
                              referencedTableName="profile"
                              referencedColumnNames="id"
                              nullable="false"/>
+            </column>
+            <column name="fk_photo_id" type="bigint">
+                <constraints nullable="true" foreignKeyName="post-to-image" referencedTableName="image" referencedColumnNames="id"/>
             </column>
         </createTable>
 

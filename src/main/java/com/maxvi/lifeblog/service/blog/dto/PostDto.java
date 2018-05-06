@@ -9,6 +9,9 @@ public class PostDto
     private Long id;
     private String post;
     private Date date;
+    private String title;
+    private String photoName;
+    private String photoUrl;
     private ProfileDto profileDto;
 
     public ProfileDto getProfileDto()
@@ -44,6 +47,30 @@ public class PostDto
     public Date getDate()
     {
         return date;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setDate(Date date)
