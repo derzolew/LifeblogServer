@@ -9,7 +9,7 @@
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
             <column name="post_id" type="bigint">
-                <constraints unique="true"
+                <constraints unique="false"
                              foreignKeyName="like-to-post"
                              referencedTableName="blog_post"
                              referencedColumnNames="id"
@@ -17,7 +17,7 @@
             </column>
             <column name="date" type="timestamp"/>
             <column name="profile_id" type="bigint">
-                <constraints unique="true"
+                <constraints unique="false"
                              foreignKeyName="like-to-profile"
                              referencedTableName="profile"
                              referencedColumnNames="id"

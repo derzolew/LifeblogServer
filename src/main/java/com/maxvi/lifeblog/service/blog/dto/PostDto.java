@@ -1,8 +1,10 @@
 package com.maxvi.lifeblog.service.blog.dto;
 
+import com.maxvi.lifeblog.service.comment.dto.CommentLikeDto;
 import com.maxvi.lifeblog.service.user.dto.ProfileDto;
 
 import java.util.Date;
+import java.util.List;
 
 public class PostDto
 {
@@ -13,6 +15,7 @@ public class PostDto
     private String photoName;
     private String photoUrl;
     private ProfileDto profileDto;
+    private List<PostLikeDto> likes;
 
     public ProfileDto getProfileDto()
     {
@@ -76,5 +79,13 @@ public class PostDto
     public void setDate(Date date)
     {
         this.date = date;
+    }
+
+    public List<PostLikeDto> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<PostLikeDto> likes) {
+        this.likes = likes;
     }
 }

@@ -77,7 +77,10 @@ public class BlogServiceImpl implements BlogService
     {
         BlogPostEntity blogPostEntity = blogRepository.findById(postId).orElse(null);
 
-        PostLikeEntity postLikeEntity = postLikeRepository.findByProfileEntityId(profileService.getCurrentUserProfile().getId());
+        PostLikeEntity postLikeEntity = postLikeRepository
+                .findByProfileEntityIdAndBlogPostEntity_Id(
+                        profileService.getCurrentUserProfile().getId(),
+                        postId);
         if (postLikeEntity == null)
         {
             postLikeEntity = new PostLikeEntity();
@@ -85,10 +88,10 @@ public class BlogServiceImpl implements BlogService
             postLikeEntity.setDate(new Date());
             postLikeEntity.setProfileEntity(profileService.getCurrentUserProfile());
             postLikeEntity = postLikeRepository.save(postLikeEntity);
-            return postLikeEntityToDto(postLikeEntity);
+            return Converters.convertLikeEntityToPostLikeDto(postLikeEntity);
         }
         postLikeRepository.delete(postLikeEntity);
-        return postLikeEntityToDto(postLikeEntity);
+        return null;
     }
 
     @Override
@@ -174,6 +177,10 @@ public class BlogServiceImpl implements BlogService
         {
             postDto.setPhotoName(blogPostEntity.getPhoto().getPublicFileName());
             postDto.setPhotoUrl(UrlGenerator.getUrlForImage(blogPostEntity.getPhoto()));
+        }
+        if (blogPostEntity.getLikes() != null)
+        {
+            postDto.setLikes(blogPostEntity.getLikes().stream().map(Converters::convertLikeEntityToPostLikeDto).collect(Collectors.toList()));
         }
         ProfileDto profileDto = Converters.profileEntityToDtoConverter(blogPostEntity.getProfile());
         postDto.setProfileDto(profileDto);

@@ -1,9 +1,7 @@
 package com.maxvi.lifeblog.service.conversion;
 
-import com.maxvi.lifeblog.model.CommentEntity;
-import com.maxvi.lifeblog.model.CommentLikeEntity;
-import com.maxvi.lifeblog.model.ImageEntity;
-import com.maxvi.lifeblog.model.ProfileEntity;
+import com.maxvi.lifeblog.model.*;
+import com.maxvi.lifeblog.service.blog.dto.PostLikeDto;
 import com.maxvi.lifeblog.service.comment.dto.CommentDto;
 import com.maxvi.lifeblog.service.comment.dto.CommentLikeDto;
 import com.maxvi.lifeblog.service.image.dto.ImageDto;
@@ -15,6 +13,14 @@ import java.util.stream.Collectors;
 
 public class Converters
 {
+    public static PostLikeDto convertLikeEntityToPostLikeDto(PostLikeEntity postLikeEntity)
+    {
+        PostLikeDto postLikeDto = new PostLikeDto();
+        postLikeDto.setDate(postLikeEntity.getDate());
+        postLikeDto.setId(postLikeEntity.getId());
+        postLikeDto.setProfileDto(profileEntityToDtoConverter(postLikeEntity.getProfileEntity()));
+        return postLikeDto;
+    }
 
     public static CommentDto convertCommentEntityToDto(CommentEntity commentEntity)
     {

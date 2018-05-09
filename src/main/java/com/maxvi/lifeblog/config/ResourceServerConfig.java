@@ -40,6 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                     .antMatchers("/swagger-resources/configuration/security").permitAll()
                     .antMatchers("/user/signup").permitAll()
                     .antMatchers("/post/all/**").permitAll()
+                    .antMatchers(HttpMethod.GET, "/post/**").permitAll()
                     .antMatchers(HttpMethod.GET, "/uploads/image/**").permitAll()
                     .anyRequest().hasAnyRole("ADMIN", "USER");
         }
